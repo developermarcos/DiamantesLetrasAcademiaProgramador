@@ -22,6 +22,7 @@ namespace DiamantesLetras.ConsoleApp
             #region parte crescente diamante
             for (int inicioDiamante = valorMinimoTabelaAsc; inicioDiamante < letraInformaUsuario; inicioDiamante++)
             {
+                imprimir += "\n";
                 for (int i = 1; i < quantidadeEspacos; i++)
                     imprimir += " ";
                 
@@ -40,6 +41,7 @@ namespace DiamantesLetras.ConsoleApp
 
             #region parte meio diamanta
             quantidadeLetras -= 2;
+            imprimir += "\n";
             imprimir += Convert.ToChar(letraInformaUsuario);
             for (int meioDiamante = 0; meioDiamante < quantidadeLetras; meioDiamante++)
             {
@@ -53,6 +55,7 @@ namespace DiamantesLetras.ConsoleApp
             quantidadeEspacos++;
             for (int fimDiamante = (letraInformaUsuario -1); fimDiamante >= valorMinimoTabelaAsc; fimDiamante--)
             {
+                imprimir += "\n";
                 for (int i = 1; i < quantidadeEspacos; i++)
                     imprimir += " ";
 
