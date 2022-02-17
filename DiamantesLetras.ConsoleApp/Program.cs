@@ -7,62 +7,72 @@ namespace DiamantesLetras.ConsoleApp
         static void Main(string[] args)
         {
             string imprimir = "";
-            int alturaDiamante, alturaMeioFimDiamante, quantidadeEspacos, quantidadeX =1, letraInformaUsuario;
+            int larguraMeioFimDiamante, quantidadeEspacos, quantidadeLetras = 1, letraInformaUsuario;
             int valorMinimoTabelaAsc = 65;
-
+            #region Imput dados
             Console.WriteLine("Imforme uma letra para o sistema montar um diamante: ");
             letraInformaUsuario = Convert.ToInt32(Convert.ToChar(Console.ReadLine().ToUpper()));
+            #endregion
 
-            alturaDiamante = (letraInformaUsuario + 1) - valorMinimoTabelaAsc;
-            Console.WriteLine("altura diamante: {0}", alturaDiamante.ToString());
-            alturaMeioFimDiamante = (alturaDiamante - 1) / 2;
-            quantidadeEspacos = alturaMeioFimDiamante+1;
+            #region Set parametros
+            quantidadeEspacos = (letraInformaUsuario + 1) - valorMinimoTabelaAsc;
+            larguraMeioFimDiamante = (letraInformaUsuario + 1) - valorMinimoTabelaAsc;
+            #endregion
 
-            for (int inicioDiamante = 0; inicioDiamante < alturaMeioFimDiamante; inicioDiamante++)
+            #region parte crescente diamante
+            for (int inicioDiamante = valorMinimoTabelaAsc; inicioDiamante < letraInformaUsuario; inicioDiamante++)
             {
                 for (int i = 1; i < quantidadeEspacos; i++)
                     imprimir += " ";
                 
-                if(quantidadeX != 1)
-                    imprimir +="A";
+                if(quantidadeLetras != 1)
+                    imprimir += Convert.ToChar(inicioDiamante).ToString();
                 
-                for (int impressaoX = 0; impressaoX < (quantidadeX -2); impressaoX++)
+                for (int impressaoX = 0; impressaoX < (quantidadeLetras -2); impressaoX++)
                     imprimir += " ";
 
-                imprimir +="A";
+                imprimir += Convert.ToChar(inicioDiamante).ToString();
                 imprimir += "\n";
-                quantidadeX += 2;
+                quantidadeLetras += 2;
                 quantidadeEspacos--;
             }
-            for (int meioDiamante = 0; meioDiamante < alturaDiamante; meioDiamante++)
+            #endregion
+
+            #region parte meio diamanta
+            quantidadeLetras -= 2;
+            imprimir += Convert.ToChar(letraInformaUsuario);
+            for (int meioDiamante = 0; meioDiamante < quantidadeLetras; meioDiamante++)
             {
-                if(meioDiamante == 0 || (meioDiamante+1) == alturaDiamante)
-                    imprimir +="A";
-                else
-                    imprimir += " ";
+                imprimir += " ";
             }
+            imprimir += Convert.ToChar(letraInformaUsuario);
             imprimir += "\n";
-            quantidadeX -= 2;
+            #endregion
+
+            #region parte baixa diamante
             quantidadeEspacos++;
-            for (int inicioDiamante = 0; inicioDiamante < alturaMeioFimDiamante; inicioDiamante++)
+            for (int fimDiamante = (letraInformaUsuario -1); fimDiamante >= valorMinimoTabelaAsc; fimDiamante--)
             {
                 for (int i = 1; i < quantidadeEspacos; i++)
                     imprimir += " ";
-                
-                if (quantidadeX != 1)
-                    imprimir +="A";
-                
-                for (int impressaoX = 0; impressaoX < (quantidadeX -2); impressaoX++)
+
+                if (quantidadeLetras != 1)
+                    imprimir += Convert.ToChar(fimDiamante).ToString();
+
+                for (int impressaoX = 0; impressaoX < (quantidadeLetras -2); impressaoX++)
                     imprimir += " ";
-                
-                imprimir +="A";
+
+                imprimir += Convert.ToChar(fimDiamante).ToString();
                 imprimir += "\n";
-                quantidadeX -= 2;
+                quantidadeLetras -= 2;
                 quantidadeEspacos++;
             }
+            #endregion
 
+            #region Saida dados
             Console.WriteLine("Diamante \n{0}", imprimir);
             Console.ReadKey();
+            #endregion
         }
     }
 }
